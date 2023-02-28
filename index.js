@@ -1,4 +1,4 @@
-const generateHTML = require('./src/document.js');
+const document = require('./src/document.js');
 const Manager = require('./lib/Manager');
 const Engineer = require('./lib/Engineer');
 const Intern = require('./lib/Intern'); 
@@ -102,6 +102,20 @@ const createEmployee = () => {
     })
 };
 
+const writeToFile = data => {
+    fs.writeFile('./dist/index.html', data, err => {
+    err ? console.error(err) : console.log('Success')
+    })
+}
+
 createManager()
-    .then(createEmployee);
-    
+    .then(createEmployee)
+    .then(team => {
+        return document(team);
+    })
+    .then(profileHTML => {
+        return writeToFile(profileHTML);
+    })
+    .catch(err => {
+        console.error(err);
+    });
