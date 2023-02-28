@@ -22,7 +22,7 @@ function addEngineer(engineer) {
     <div class="card h-100">
         <div class="card-header">
             <h3>${engineer.name}</h3>
-            <h4>Manager</h4>
+            <h4>Engineer</h4>
         </div>
         <div class="card-body">
             <p class="id">ID: ${engineer.id}</p>
@@ -40,7 +40,7 @@ function addIntern(intern) {
     <div class="card h-100">
         <div class="card-header">
             <h3>${intern.name}</h3>
-            <h4>Manager</h4>
+            <h4>Intern</h4>
         </div>
         <div class="card-body">
             <p class="id">ID: ${intern.id}</p>
@@ -51,3 +51,73 @@ function addIntern(intern) {
 </div>    
 `;
 };
+
+addHTML = (data) => {
+    page = [];
+
+    for (let i = 0; i < data.length; i++) {
+        const employee = data[i];
+        const role = employee.getRole();
+
+        if (role === 'Manager') {
+            const managerInfo = addManager(employee);
+            page.push(managerInfo);
+        }
+        if (role === 'Engineer') {
+            const engineerInfo = addEngineer(employee);
+            page.push(engineerInfo);
+        }
+        if (role === 'Intern') {
+            const internInfo = addIntern(employee);
+            page.push(internInfo);
+        }
+    }
+
+    const employeeInfo = page.join('');
+    const generateTeam = generateProfile(employeeInfo);
+    return generateTeam;
+};
+
+function generateProfile(employeeInfo) {
+    return`
+    <!DOCTYPE html>
+    <html lang="en">
+    <head>
+      <meta charset="UTF-8" />
+      <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+      <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+      <title>Team Profile</title>
+      <link
+      rel="stylesheet"
+      href="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/css/bootstrap.min.css"
+    />
+    <link
+      rel="stylesheet"
+      href="https://use.fontawesome.com/releases/v5.8.1/css/all.css"
+      integrity="sha384-50oBUHEmvpQ+1lW4y57PTFmhCaXp0ML5d60M1M7uH2+nqUivzIebhndOJK28anvf"
+      crossorigin="anonymous"
+    />
+      <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:ital@0;1&family=Roboto+Slab:wght@200;400&display=swap" 
+      rel="stylesheet"
+    />
+      <link rel="stylesheet" href="../dist/style.css" />
+    </head>
+    <body>
+        <header>
+            <nav class="navbar bg-dark" data-bs-theme="dark">
+                <span class="navbar-brand mb-0 h1 w-100 text-center" id="navbar-text">Team Profile</span>
+            </nav>
+        </header>
+        <main>
+            <div class="container">    
+                <div class="row justify-content-center" id="team-cards">
+                ${employeeInfo}
+                </div>
+            </div>
+        </main>
+    </body>
+    </html>
+    `
+};
+
+module.exports = addHTML;

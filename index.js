@@ -111,7 +111,7 @@ const writeToFile = data => {
 createManager()
     .then(createEmployee)
     .then(team => {
-        return document(team);
+        return addHTML(team);
     })
     .then(profileHTML => {
         return writeToFile(profileHTML);

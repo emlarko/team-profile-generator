@@ -1,0 +1,12 @@
+body {
+    background-color:#F1FFF9;
+}
+
+#navbar-text {
+    color: white;
+    font-size: 30px;
+}
+
+.card-header {
+    background-color: #D5E9E0;
+}
