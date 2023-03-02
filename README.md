@@ -23,6 +23,8 @@ A HTML file is then created by the application, with containers displaying the i
 
 An example HTML file has been included in the dist folder of this repo to demonstrate the final product. 
 
+[Team Profile Generator.webm](https://user-images.githubusercontent.com/101362057/222438611-88543aec-46a6-447c-ac24-fdf2eadd0c02.webm)
+
 ![screenshot](images/screenshot.png?raw=true "screenshot")
 
 ## Tests
